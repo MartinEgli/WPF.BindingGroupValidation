@@ -1,0 +1,108 @@
+﻿<Window
+    x:Class="WpfApp3.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Interactions="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:WpfApp3"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="MainWindow"
+    Width="800"
+    Height="450"
+    Loaded="Window_Loaded"
+    Validation.ValidationAdornerSite="{Binding ElementName=lbErrors}"
+    mc:Ignorable="d">
+
+    <Window.DataContext>
+        <local:EmployeeViewModel />
+    </Window.DataContext>
+
+    <Interactions:Interaction.Behaviors>
+        <local:BindingGroupValidationOnPropertyChangedBehavior
+            x:Name="PropertyChangedBehavior"
+            BindingGroup="{Binding ElementName=MyBindingGroup}"
+            IsDirty="{Binding IsDirty, Mode=OneWayToSource}" />
+    </Interactions:Interaction.Behaviors>
+
+    <Grid x:Name="gridMain">
+        <Grid.BindingGroup>
+            <BindingGroup
+                x:Name="MyBindingGroup"
+                 NotifyOnValidationError="True"
+                ValidatesOnNotifyDataError="True">
+                <BindingGroup.ValidationRules>
+                    <local:EmployeeValidationRule ValidatesOnTargetUpdated="True" ValidationStep="RawProposedValue" />
+                </BindingGroup.ValidationRules>
+            </BindingGroup>
+        </Grid.BindingGroup>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Label Content="Nr:" />
+        <StackPanel Grid.Column="1">
+            <TextBox x:Name="tbNumber" Text="{Binding Employee.Nr, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox x:Name="tbNumber2" />
+        </StackPanel>
+        <Label
+            Grid.Row="1"
+            Content="Vorname:"
+            Target="{Binding ElementName=tbFirstname}" />
+        <TextBox
+            x:Name="tbFirstname"
+            Grid.Row="1"
+            Grid.Column="1"
+            Text="{Binding Employee.Firstname, UpdateSourceTrigger=PropertyChanged}" />
+
+        <Label
+            Grid.Row="2"
+            Content="Nachname:"
+            Target="{Binding ElementName=tbLastname}" />
+        <DatePicker />
+
+        <TextBox
+            x:Name="tbLastname"
+            Grid.Row="2"
+            Grid.Column="1"
+            Text="{Binding Employee.Lastname, UpdateSourceTrigger=PropertyChanged}" />
+
+        <!--<Label
+            x:Name="lbErrors"
+            Grid.Row="4"
+            Grid.Column="0"
+            Content="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.ValidationAdornerSiteFor).(Validation.Errors)[0].ErrorContent}"
+            FontWeight="Bold"
+            Foreground="Red" />-->
+
+        <StackPanel
+            Grid.Row="4"
+            Grid.Column="1"
+            HorizontalAlignment="Right"
+            Orientation="Horizontal">
+            <TextBlock x:Name="tbIsDirty" />
+            <!--<Button x:Name="btn1" Content="IsDirty?" Click="btn1_Click" />-->
+            <Button
+                x:Name="btnSave"
+                Click="btnSave_Click"
+                Content="Save1"
+                IsEnabled="{Binding Path=IsDirty}" />
+            <Button
+                x:Name="btnSave1"
+                Click="btnSave_Click"
+                Content="Save2"
+                IsEnabled="{Binding Path=IsDirty, ElementName=PropertyChangedBehavior}" />
+            <Button
+                x:Name="btnCancel"
+                Click="btnCancel_Click"
+                Content="Cancel" />
+        </StackPanel>
+    </Grid>
+</Window>
