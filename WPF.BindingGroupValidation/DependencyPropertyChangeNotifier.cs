@@ -1,10 +1,12 @@
-namespace WpfApp3
+// -----------------------------------------------------------------------
+// <copyright file="DependencyPropertyChangeNotifier.cs" company="bfa solutions ltd">
+// Copyright (c) bfa solutions ltd. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
+
+namespace WPF.BindingGroupValidation
 {
-    #region
-
     using System.Windows;
-
-    #endregion
 
     /// <summary>
     ///     The specific DependencyPropertyChangeNotifier class

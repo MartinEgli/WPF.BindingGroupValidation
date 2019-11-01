@@ -1,15 +1,17 @@
-namespace WpfApp3
-{
-    #region
+// -----------------------------------------------------------------------
+// <copyright file="DependencyPropertyChangeNotifier{T}.cs" company="bfa solutions ltd">
+// Copyright (c) bfa solutions ltd. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
+namespace WPF.BindingGroupValidation
+{
     using System;
     using System.ComponentModel;
     using System.Windows;
     using System.Windows.Data;
 
     using JetBrains.Annotations;
-
-    #endregion
 
     /// <summary>
     ///     The generic DependencyPropertyChangeNotifier class.
@@ -70,12 +72,33 @@ namespace WpfApp3
             [NotNull] DependencyObject propertySource,
             [NotNull] PropertyPath property)
         {
-            if (propertySource == null) throw new ArgumentNullException(nameof(propertySource));
-            if (property == null) throw new ArgumentNullException(nameof(property));
+            if (propertySource == null)
+            {
+                throw new ArgumentNullException(nameof(propertySource));
+            }
+
+            if (property == null)
+            {
+                throw new ArgumentNullException(nameof(property));
+            }
+
             this.propertySource = new WeakReference(propertySource);
             var binding = new Binding { Path = property, Mode = BindingMode.OneWay, Source = propertySource };
             BindingOperations.SetBinding(this, ValueProperty, binding);
         }
+
+        /// <summary>
+        ///     Occurs when [dependency property changed].
+        /// </summary>
+        public event EventHandler<DependencyPropertyChangedEventArgs> DependencyPropertyChanged;
+
+        /// <summary>
+        ///     Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
+        /// <summary>
+        ///     Occurs when [value changed].
+        /// </summary>
+        public event EventHandler<ValueChangedEventArgs<T>> ValueChanged;
 
         /// <summary>
         ///     Gets the property source.
@@ -115,19 +138,6 @@ namespace WpfApp3
             this.Dispose(true);
             GC.SuppressFinalize(this);
         }
-
-        /// <summary>
-        ///     Occurs when [dependency property changed].
-        /// </summary>
-        public event EventHandler<DependencyPropertyChangedEventArgs> DependencyPropertyChanged;
-
-        /// <summary>
-        ///     Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
-        /// <summary>
-        ///     Occurs when [value changed].
-        /// </summary>
-        public event EventHandler<ValueChangedEventArgs<T>> ValueChanged;
 
         /// <summary>
         ///     Releases unmanaged and - optionally - managed resources.

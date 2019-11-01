@@ -1,12 +1,14 @@
-namespace WpfApp3
-{
-    #region
+// -----------------------------------------------------------------------
+// <copyright file="ValueChangedEventArgs.cs" company="bfa solutions ltd">
+// Copyright (c) bfa solutions ltd. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
+namespace WPF.BindingGroupValidation
+{
     using System;
 
     using JetBrains.Annotations;
-
-    #endregion
 
     /// <summary>
     ///     The ValueChangedEventArgs class.
@@ -23,7 +25,7 @@ namespace WpfApp3
         /// <param name="newValue">The new value.</param>
         public ValueChangedEventArgs([NotNull] string name, [CanBeNull] T oldValue, [CanBeNull] T newValue)
         {
-            this.Name = name;
+            this.Name = name ?? throw new ArgumentNullException(nameof(name));
             this.OldValue = oldValue;
             this.NewValue = newValue;
         }

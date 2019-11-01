@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.779
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BindingGroupValidation", "WpfApp3\BindingGroupValidation.csproj", "{1335177A-479D-4993-9DF9-76660A542C79}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF.BindingGroupValidation.TestGui", "WPF.BindingGroupValidation.TestGui\WPF.BindingGroupValidation.TestGui.csproj", "{1335177A-479D-4993-9DF9-76660A542C79}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF.BindingGroupValidation", "WPF.BindingGroupValidation\WPF.BindingGroupValidation.csproj", "{28604C01-2A67-478A-99CD-C04B82DB793B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{1335177A-479D-4993-9DF9-76660A542C79}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1335177A-479D-4993-9DF9-76660A542C79}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1335177A-479D-4993-9DF9-76660A542C79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28604C01-2A67-478A-99CD-C04B82DB793B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28604C01-2A67-478A-99CD-C04B82DB793B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28604C01-2A67-478A-99CD-C04B82DB793B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28604C01-2A67-478A-99CD-C04B82DB793B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
